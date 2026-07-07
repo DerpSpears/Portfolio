@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shriniketh Kana</title>
+<meta name="description" content="Shriniketh Kana — cybersecurity researcher.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;padding:18px;
+  font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;color:#182b06;overflow:hidden}
+
+/* ---- metallic TV bezel ---- */
+.tv{position:relative;width:min(1180px,100%);height:min(86vh,760px);border-radius:26px;
+  padding:14px;background:linear-gradient(160deg,#f4f6f8,#c3cace 22%,#8f979c 50%,#c7ced2 78%,#eef1f3);
+  box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 2px 3px rgba(255,255,255,.9),inset 0 -3px 6px rgba(0,0,0,.35)}
+.tv::before{content:"";position:absolute;inset:8px;border-radius:20px;
+  background:linear-gradient(#3a4045,#20262a);z-index:0}
+
+/* ---- the screen ---- */
+.screen{position:absolute;inset:14px;border-radius:16px;overflow:hidden;z-index:1;
+  transition:background .6s ease}
+.screen[data-blade="0"]{--c1:#d3ec7a;--c2:#7db500;--edge:#1d3a05;--acc:#8cc63f;--txt:#22370b}
+.screen[data-blade="1"]{--c1:#a9dcff;--c2:#3f8fd8;--edge:#0a2247;--acc:#2f86d6;--txt:#0c2749}
+.screen[data-blade="2"]{--c1:#ffd894;--c2:#e59422;--edge:#4a2a00;--acc:#ef9f2a;--txt:#472900}
+.screen[data-blade="3"]{--c1:#a3f1e1;--c2:#16b39b;--edge:#053e37;--acc:#1fc3a8;--txt:#053b34}
+.screen[data-blade="4"]{--c1:#dccbff;--c2:#7d5cf0;--edge:#221351;--acc:#8f6cff;--txt:#1f1248}
+
+/* ---- living green swirl background ---- */
+.bg{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(120% 90% at 50% 42%,var(--c1) 0%,var(--c2) 46%,var(--edge) 100%);
+  transition:background .6s ease}
+.bg::before,.bg::after{content:"";position:absolute;inset:-30%;border-radius:45%;
+  background:radial-gradient(closest-side,rgba(255,255,255,.32),transparent 70%);
+  mix-blend-mode:screen}
+.bg::before{animation:sw1 26s linear infinite}
+.bg::after{background:radial-gradient(closest-side,rgba(255,255,255,.18),transparent 70%);
+  animation:sw2 34s linear infinite reverse}
+@keyframes sw1{to{transform:rotate(360deg)}}
+@keyframes sw2{to{transform:rotate(360deg)}}
+.bg .glow{position:absolute;left:8%;top:6%;right:8%;height:46%;
+  background:radial-gradient(80% 100% at 50% 0,rgba(255,255,255,.5),transparent 72%)}
+
+/* ---- blades row ---- */
+.blades{position:absolute;inset:0;z-index:2;display:flex}
+.blade{flex:0 0 58px;position:relative;overflow:hidden;display:flex;
+  transition:flex-grow .5s cubic-bezier(.4,.05,.2,1),flex-basis .5s cubic-bezier(.4,.05,.2,1)}
+.blade.active{flex:1 1 auto}
+
+/* blade tab */
+.tab{flex:0 0 58px;width:58px;height:100%;border:none;cursor:pointer;position:relative;
+  background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(0,0,0,.14));
+  border-left:1px solid rgba(255,255,255,.4);border-right:1px solid rgba(0,0,0,.22);
+  display:flex;align-items:center;justify-content:center}
+.tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:16px;font-weight:600;
+  letter-spacing:.06em;color:rgba(255,255,255,.92);text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.tab::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:var(--cap)}
+.blade.b0{--cap:#8cc63f}.blade.b1{--cap:#2f86d6}.blade.b2{--cap:#ef9f2a}
+.blade.b3{--cap:#1fc3a8}.blade.b4{--cap:#8f6cff}
+.blade.active .tab{background:linear-gradient(90deg,rgba(255,255,255,.5),rgba(255,255,255,.1))}
+.blade.active .tab span{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.tab:hover span{color:#fff}
+
+/* ---- content ---- */
+.content{display:none;flex:1;min-width:0;flex-direction:column;padding:22px 30px 16px 26px}
+.blade.active .content{display:flex}
+
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.h1{font-size:38px;font-weight:300;color:var(--txt);text-shadow:0 1px 0 rgba(255,255,255,.35);line-height:1}
+.brand{text-align:right;display:flex;align-items:center;gap:12px}
+.brand .wm{font-size:13px;font-weight:600;color:var(--txt);opacity:.85;line-height:1.3}
+.brand .wm b{display:block;font-size:16px;font-weight:700}
+.orb{width:52px;height:52px;border-radius:50%;position:relative;flex:0 0 auto;
+  background:radial-gradient(circle at 34% 30%,#ffffff,var(--acc) 55%,rgba(0,0,0,.35));
+  box-shadow:inset 0 2px 4px rgba(255,255,255,.7),0 3px 8px rgba(0,0,0,.35);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;
+  text-shadow:0 1px 2px rgba(0,0,0,.4);letter-spacing:-.03em}
+
+/* profile strip */
+.pcard{margin-top:16px;display:flex;align-items:center;gap:16px;max-width:560px;
+  background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.28));
+  border:1px solid rgba(255,255,255,.7);border-radius:12px;padding:12px 14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 4px 10px rgba(0,0,0,.12)}
+.gpic{width:64px;height:64px;border-radius:8px;flex:0 0 auto;border:2px solid rgba(255,255,255,.85);
+  background:conic-gradient(from 0deg,var(--acc),#fff 25%,var(--c2) 50%,#fff 75%,var(--acc)),
+           repeating-linear-gradient(45deg,rgba(0,0,0,.08) 0 6px,transparent 6px 12px);
+  background-blend-mode:overlay;box-shadow:inset 0 0 0 3px rgba(255,255,255,.4)}
+.pcard .pt b{font-size:20px;color:var(--txt);font-weight:700}
+.pcard .pt div{font-size:13px;color:rgba(0,0,0,.62);margin-top:1px}
+.pcard .pt .score{margin-top:6px;font-size:12px;font-weight:700;color:var(--txt);
+  display:inline-flex;align-items:center;gap:6px}
+.pcard .pt .score b{font-size:13px}
+
+.sub{margin-top:14px;font-size:14.5px;color:rgba(0,0,0,.6);max-width:640px;line-height:1.5}
+
+/* menu list */
+.list{margin-top:14px;flex:1;overflow-y:auto;padding-right:6px;display:flex;flex-direction:column;gap:2px}
+.list::-webkit-scrollbar{width:8px}
+.list::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:8px}
+.row{display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;
+  border:none;background:transparent;padding:11px 14px;border-radius:999px;position:relative;
+  transition:.18s;color:var(--txt)}
+.row .ic{width:34px;height:34px;flex:0 0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--txt);color:var(--txt);opacity:.9}
+.row .ic svg{width:18px;height:18px}
+.row .tx{min-width:0}
+.row .tx b{display:block;font-size:16px;font-weight:600}
+.row .tx i{display:block;font-style:normal;font-size:12.5px;color:rgba(0,0,0,.6);
+  overflow:hidden;text-overflow:ellipsis}
+.row .go{margin-left:auto;font-size:20px;opacity:0;transition:.18s;color:var(--txt)}
+.row:hover,.row.sel{background:linear-gradient(180deg,#ffffff,#e9eef0);
+  box-shadow:0 3px 9px rgba(0,0,0,.18),inset 0 1px 0 #fff;color:#1a1a1a}
+.row:hover .ic,.row.sel .ic{border-color:#333;color:#333}
+.row:hover .tx i,.row.sel .tx i{color:rgba(0,0,0,.6)}
+.row:hover .go,.row.sel .go{opacity:.6}
+
+.row .dt{margin-left:auto;font-size:12.5px;font-weight:600;color:rgba(0,0,0,.5);white-space:nowrap;padding-left:12px}
+.row:hover .dt,.row.sel .dt{color:rgba(0,0,0,.6)}
+.row .dt ~ .go{margin-left:10px}
+
+/* footer: glossy action pill + controller hints */
+.foot{margin-top:12px}
+.pill{display:flex;align-items:center;gap:14px;text-decoration:none;
+  background:linear-gradient(180deg,#ffffff,#dfe5e8 52%,#c9d1d5);border:1px solid rgba(255,255,255,.8);
+  border-radius:999px;padding:8px 10px;box-shadow:0 4px 12px rgba(0,0,0,.22),inset 0 1px 0 #fff}
+.pill .rr{width:38px;height:38px;border-radius:50%;flex:0 0 auto;
+  background:radial-gradient(circle at 36% 30%,#fff,#b9c2c6);border:1px solid rgba(0,0,0,.15);
+  display:flex;align-items:center;justify-content:center;color:#3a4247;font-size:18px;
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.9)}
+.pill .pl{font-size:16px;font-weight:600;color:#2a3034}
+.hints{display:flex;align-items:center;gap:18px;margin-top:12px;
+  color:rgba(255,255,255,.92);font-size:12.5px;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.hints .b{display:inline-flex;align-items:center;gap:7px}
+.dot{width:19px;height:19px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:#1a1a1a;box-shadow:inset 0 1px 1px rgba(255,255,255,.6),0 1px 2px rgba(0,0,0,.3)}
+.dot.a{background:#7bbf3a}.dot.b{background:#d24b3e;color:#fff}.dot.x{background:#2f86d6;color:#fff}.dot.y{background:#e7b528}
+.hints .lr{font-size:15px;letter-spacing:2px;color:#fff}
+
+@media(max-width:820px){
+  .tv{height:92vh}
+  .h1{font-size:30px}
+  .content{padding:18px 16px 12px 14px}
+  .tab{flex-basis:44px;width:44px}
+  .blade{flex-basis:44px}
+  .brand .wm{display:none}
+  .row .tx i{white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="tv">
+  <div class="screen" id="screen" data-blade="0">
+    <div class="bg"><div class="glow"></div></div>
+    <div class="blades" id="blades">
+
+      <!-- ===== PROFILE ===== -->
+      <section class="blade b0 active" data-i="0">
+        <button class="tab" aria-label="profile"><span>profile</span></button>
+        <div class="content">
+          <div class="top">
+            <div class="h1">profile</div>
+            <div class="brand"><span class="wm">cybersecurity<b>shriniketh.com</b></span><span class="orb">SK</span></div>
+          </div>
+          <div class="pcard">
+            <div class="gpic"></div>
+            <div class="pt">
+              <b>Shriniketh Kana</b>
+              <div>Cybersecurity Researcher</div>
+              <div class="score">RANK &nbsp;<b>Top 7</b> &middot; national CTFtime</div>
+            </div>
+          </div>
+          <p class="sub">Dual-degree Computer Science &amp; Data Science student. Roots in offensive security &mdash; reverse engineering, binary exploitation and cryptography &mdash; now extending into machine learning for security.</p>
+          <div class="list">
+            <button class="row sel"><span class="ic">SVGPERSON</span><span class="tx"><b>About</b><i>Breaks systems to understand them; ML-security research in progress.</i></span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGCAP</span><span class="tx"><b>PES University</b><i>B.Tech, Computer Science &middot; CGPA 8.61</i></span><span class="dt">2024 &ndash; Present</span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGCAP</span><span class="tx"><b>IIT Madras</b><i>B.S. Data Science &middot; CGPA 8.0 &middot; Online</i></span><span class="dt">2024 &ndash; Present</span><span class="go">&#8250;</span></button>
+          </div>
+          <div class="foot">
+            <a class="pill" href="mailto:shrinikethkana@gmail.com"><span class="rr">&#9993;</span><span class="pl">Get in touch</span></a>
+            <div class="hints"><span class="b"><span class="dot a">A</span>select</span><span class="b"><span class="dot b">B</span>back</span><span class="b"><span class="lr">&#9664;&#9654;</span>blades</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== EXPERIENCE ===== -->
+      <section class="blade b1" data-i="1">
+        <button class="tab" aria-label="experience"><span>experience</span></button>
+        <div class="content">
+          <div class="top">
+            <div class="h1">experience</div>
+            <div class="brand"><span class="wm">cybersecurity<b>shriniketh.com</b></span><span class="orb">SK</span></div>
+          </div>
+          <p class="sub">Research, teaching and competition &mdash; where the security work actually happens.</p>
+          <div class="list">
+            <button class="row sel"><span class="ic">SVGSHIELD</span><span class="tx"><b>Research Intern &mdash; C-ISFCR</b><i>Adversarial robustness of GNN malware detectors; built an evasion pipeline. Manuscript in prep.</i></span><span class="dt">Jun 2026 &ndash; Present</span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGPERSON</span><span class="tx"><b>Teaching Assistant &mdash; Ethical Hacking</b><i>PES University, Executive Masters. Design and grade custom CTF challenges.</i></span><span class="dt">Jun 2026 &ndash; Present</span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGFLAG</span><span class="tx"><b>CTF Competitor &mdash; ISFCR PESU</b><i>Top 7 national ranking; 5 major wins across RE, pwn and crypto.</i></span><span class="dt">Aug 2024 &ndash; Present</span><span class="go">&#8250;</span></button>
+          </div>
+          <div class="foot">
+            <a class="pill" href="https://www.linkedin.com/in/shriniketh-kana-114b62330/"><span class="rr">&#8250;</span><span class="pl">View LinkedIn</span></a>
+            <div class="hints"><span class="b"><span class="dot a">A</span>select</span><span class="b"><span class="dot b">B</span>back</span><span class="b"><span class="lr">&#9664;&#9654;</span>blades</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PROJECTS ===== -->
+      <section class="blade b2" data-i="2">
+        <button class="tab" aria-label="projects"><span>projects</span></button>
+        <div class="content">
+          <div class="top">
+            <div class="h1">projects</div>
+            <div class="brand"><span class="wm">cybersecurity<b>shriniketh.com</b></span><span class="orb">SK</span></div>
+          </div>
+          <p class="sub">Things I&rsquo;ve built &mdash; systems, tooling and infrastructure.</p>
+          <div class="list">
+            <button class="row sel" data-url="https://github.com/DerpSpears/ContestArena"><span class="ic">SVGCODE</span><span class="tx"><b>Contest Arena</b><i>Distributed judging platform; sandboxed multi-threaded pipeline. 150&ndash;200 concurrent users, zero downtime.</i></span><span class="go">&#8250;</span></button>
+            <button class="row" data-url="https://github.com/DerpSpears/skedit"><span class="ic">SVGCODE</span><span class="tx"><b>SKEDIT</b><i>Terminal text editor in C using a rope data structure for fast edits on large files.</i></span><span class="go">&#8250;</span></button>
+          </div>
+          <div class="foot">
+            <a class="pill" href="https://github.com/DerpSpears"><span class="rr">&#8250;</span><span class="pl">Open GitHub</span></a>
+            <div class="hints"><span class="b"><span class="dot a">A</span>open</span><span class="b"><span class="dot b">B</span>back</span><span class="b"><span class="lr">&#9664;&#9654;</span>blades</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== RESEARCH ===== -->
+      <section class="blade b3" data-i="3">
+        <button class="tab" aria-label="research"><span>research</span></button>
+        <div class="content">
+          <div class="top">
+            <div class="h1">research</div>
+            <div class="brand"><span class="wm">cybersecurity<b>shriniketh.com</b></span><span class="orb">SK</span></div>
+          </div>
+          <p class="sub">Security &amp; ML research &mdash; disclosure, embedded systems and adversarial machine learning.</p>
+          <div class="list">
+            <button class="row sel"><span class="ic">SVGSHIELD</span><span class="tx"><b>MobiKwik &mdash; Fund-Duplication Disclosure</b><i>Found &amp; responsibly disclosed a critical UPI transaction-integrity flaw. Vendor-confirmed and remediated.</i></span><span class="go">&#8250;</span></button>
+            <button class="row" data-url="https://github.com/ISFCR-ECTF/shift"><span class="ic">SVGCHIP</span><span class="tx"><b>SHIFT &mdash; Secure Embedded File Transfer</b><i>Crypto firmware for TI MSP-LITTO L228 (ARM Cortex-M0+). eCTF: 20th of 119 universities.</i></span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGSHIELD</span><span class="tx"><b>Adversarial ML vs. Malware Detectors</b><i>Evasion of GNN-based detectors via semantics-preserving transforms. Manuscript in preparation.</i></span><span class="go">&#8250;</span></button>
+          </div>
+          <div class="foot">
+            <a class="pill" href="https://github.com/ISFCR-ECTF/shift"><span class="rr">&#8250;</span><span class="pl">View SHIFT</span></a>
+            <div class="hints"><span class="b"><span class="dot a">A</span>open</span><span class="b"><span class="dot b">B</span>back</span><span class="b"><span class="lr">&#9664;&#9654;</span>blades</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== AWARDS ===== -->
+      <section class="blade b4" data-i="4">
+        <button class="tab" aria-label="awards"><span>awards</span></button>
+        <div class="content">
+          <div class="top">
+            <div class="h1">awards</div>
+            <div class="brand"><span class="wm">cybersecurity<b>shriniketh.com</b></span><span class="orb">SK</span></div>
+          </div>
+          <p class="sub">Podiums, plus the toolkit behind them.</p>
+          <div class="list">
+            <button class="row sel"><span class="ic">SVGTROPHY</span><span class="tx"><b>1st &mdash; Kaalchakra CTF</b><i>National Level &middot; NFSU, Goa</i></span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGTROPHY</span><span class="tx"><b>2nd &mdash; Psych CTF</b><i>National Level &middot; IIT Mandi</i></span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGTROPHY</span><span class="tx"><b>4th &mdash; PESU SOC CyberClash</b><i>National Level &middot; Red vs Blue</i></span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGTROPHY</span><span class="tx"><b>3rd &mdash; Hackwars</b><i>College Level</i></span><span class="go">&#8250;</span></button>
+            <button class="row"><span class="ic">SVGCHIP</span><span class="tx"><b>Skills</b><i>Python &middot; C/C++ &middot; RE &middot; Pwn &middot; Crypto &middot; PyTorch &middot; GNNs &middot; Adversarial ML</i></span><span class="go">&#8250;</span></button>
+          </div>
+          <div class="foot">
+            <a class="pill" href="https://ctftime.org/team/166645"><span class="rr">&#8250;</span><span class="pl">CTFtime profile</span></a>
+            <div class="hints"><span class="b"><span class="dot a">A</span>select</span><span class="b"><span class="dot b">B</span>back</span><span class="b"><span class="lr">&#9664;&#9654;</span>blades</span></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var ICONS={
+    SVGPERSON:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5"/></svg>',
+    SVGCAP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4 22 9l-10 5L2 9z"/><path d="M6 11v5c0 1.2 2.7 2.5 6 2.5s6-1.3 6-2.5v-5"/></svg>',
+    SVGSHIELD:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6z"/><path d="M9 12l2 2 4-4.5"/></svg>',
+    SVGFLAG:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 21V4"/><path d="M6 5h11l-2.2 3.2L17 12H6"/></svg>',
+    SVGCODE:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/></svg>',
+    SVGCHIP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v3M14 3v3M10 18v3M14 18v3M3 10h3M3 14h3M18 10h3M18 14h3"/></svg>',
+    SVGTROPHY:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 13v3M9 20h6M10 20v-1.5h4V20"/></svg>'
+  };
+  document.querySelectorAll('.ic').forEach(function(el){var k=el.textContent.trim();if(ICONS[k])el.innerHTML=ICONS[k];});
+
+  var screen=document.getElementById('screen');
+  var blades=[].slice.call(document.querySelectorAll('.blade'));
+  var cur=0;
+  function select(i){
+    i=Math.max(0,Math.min(blades.length-1,i));
+    if(i===cur)return;
+    blades[cur].classList.remove('active');
+    blades[i].classList.add('active');
+    cur=i;screen.setAttribute('data-blade',i);
+  }
+  blades.forEach(function(b){
+    b.querySelector('.tab').addEventListener('click',function(){select(+b.dataset.i);});
+  });
+  // rows with a data-url open on click
+  document.querySelectorAll('.row[data-url]').forEach(function(r){
+    r.addEventListener('click',function(){window.open(r.dataset.url,'_blank');});
+  });
+  // hover selection within the active blade
+  document.querySelectorAll('.list').forEach(function(list){
+    list.addEventListener('mouseover',function(e){
+      var row=e.target.closest('.row');if(!row)return;
+      list.querySelectorAll('.row').forEach(function(x){x.classList.remove('sel');});
+      row.classList.add('sel');
+    });
+  });
+  window.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){select(cur+1);e.preventDefault();}
+    else if(e.key==='ArrowLeft'){select(cur-1);e.preventDefault();}
+  });
+})();
+</script>
+</body>
+</html>
