@@ -4,17 +4,173 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shriniketh Kana</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot-news" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="robots" content="noai, noimageai">
+<meta name="GPTBot" content="noindex, nofollow">
+<meta name="ChatGPT-User" content="noindex, nofollow">
+<meta name="Google-Extended" content="noindex, nofollow">
+<meta name="CCBot" content="noindex, nofollow">
 <meta name="description" content="Shriniketh Kana — cybersecurity researcher.">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;padding:18px;
-  font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;color:#182b06;overflow:hidden}
+body{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center;padding:0;
+  font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;color:#182b06;overflow:hidden;
+  background:radial-gradient(130% 90% at 50% 0%,rgba(255,255,255,.07),transparent 55%),
+    linear-gradient(180deg,#46515e 0%,#3d4753 60%,#39434e 66%,#2c333c 66.2%,#242a31 100%)}
+body::before{content:"";position:absolute;left:0;right:0;top:calc(66% - 6px);height:6px;z-index:0;
+  background:linear-gradient(#20262d,#0e1114);opacity:.7}
+
+.room{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+
+/* ===== scene ===== */
+.scene{position:relative;z-index:1;width:min(1024px,86vw);display:flex;flex-direction:column;align-items:center}
+
+/* ===== TV outer housing ===== */
+.tvset{position:relative;width:100%;padding:15px 15px 0;border-radius:26px;
+  background:linear-gradient(160deg,#22262c,#0d1013 52%,#181c21);
+  box-shadow:0 32px 60px rgba(0,0,0,.6),inset 0 2px 2px rgba(255,255,255,.09),inset 0 -5px 12px rgba(0,0,0,.7)}
+.tvchin{height:34px;display:flex;align-items:center;justify-content:center;position:relative}
+.tvbrand{font-size:11px;font-weight:700;letter-spacing:.32em;color:#7d868f;text-shadow:0 1px 0 rgba(0,0,0,.6)}
+.led{width:7px;height:7px;border-radius:50%;position:absolute;right:20px;background:#7cff5a;
+  box-shadow:0 0 6px 1px rgba(124,255,90,.85);transition:.3s}
+.scene.off .led{background:#c0392b;box-shadow:0 0 5px 1px rgba(192,57,43,.7)}
+
+/* CRT power-off overlay */
+.crt{position:absolute;inset:14px;border-radius:16px;z-index:6;background:#050505;
+  opacity:0;pointer-events:none;overflow:hidden;transition:opacity .3s ease .12s}
+.scene.off .crt{opacity:1}
+.crt .line{position:absolute;left:6%;right:6%;top:50%;height:3px;border-radius:3px;opacity:0;
+  transform:translateY(-50%) scaleX(0);background:linear-gradient(90deg,transparent,#fff,transparent)}
+.scene.off .crt .line{animation:crtline .5s ease-out}
+@keyframes crtline{0%{transform:translateY(-50%) scaleX(.02);opacity:0}
+  18%{transform:translateY(-50%) scaleX(1);opacity:1}
+  55%{transform:translateY(-50%) scaleX(1);opacity:1}
+  100%{transform:translateY(-50%) scaleX(0);opacity:0}}
+
+/* ===== stand / rack ===== */
+.stand{width:100%;display:flex;justify-content:center}
+.rack{position:relative;width:min(560px,80%);margin-top:-2px;padding:12px 16px 0;
+  background:linear-gradient(180deg,#6a5442,#4f3e30);border-radius:5px 5px 3px 3px;
+  box-shadow:0 26px 40px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.12)}
+.rack::before{content:"";position:absolute;left:0;right:0;top:0;height:9px;border-radius:5px 5px 0 0;
+  background:linear-gradient(#8a6f57,#6a5442)}
+.shelf{position:relative;height:82px;border-radius:4px;display:flex;align-items:flex-end;justify-content:center;gap:20px;padding:0 18px 11px;overflow:visible;
+  background:linear-gradient(180deg,#241c16,#181210);
+  box-shadow:inset 0 5px 14px rgba(0,0,0,.75),inset 0 -1px 0 rgba(255,255,255,.05)}
+.legs{display:flex;justify-content:space-between;padding:0 24px;margin-top:2px}
+.legs span{width:16px;height:16px;border-radius:0 0 3px 3px;background:linear-gradient(#4f3e30,#2f251d)}
+
+/* ===== Xbox 360 (pure shapes) ===== */
+.xbox{position:relative;width:300px;max-width:100%;height:66px;display:flex;align-items:center;
+  background:linear-gradient(180deg,#fbfbf9,#e9e9e4 46%,#d3d3cc 54%,#f4f4ef);
+  border-radius:12px/16px;
+  box-shadow:0 8px 16px rgba(0,0,0,.5),inset 0 2px 2px rgba(255,255,255,.9),inset 0 -3px 6px rgba(0,0,0,.18)}
+.xbox::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:34%;transform:translateX(-50%);
+  background:radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,.10),transparent 70%)}
+.xcap{position:absolute;top:0;bottom:0;width:30px;background:linear-gradient(180deg,#c9c9c2,#a9a9a1)}
+.xcap.l{left:0;border-radius:12px 4px 4px 12px;box-shadow:inset -2px 0 4px rgba(0,0,0,.2)}
+.xcap.r{right:0;border-radius:4px 12px 12px 4px;box-shadow:inset 2px 0 4px rgba(0,0,0,.2)}
+.xslot{position:absolute;left:48px;top:15px;width:96px;height:5px;border-radius:3px;background:#3b3b38;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.8),0 1px 0 rgba(255,255,255,.7)}
+.power{position:absolute;right:54px;top:50%;transform:translateY(-50%);width:44px;height:44px;
+  border:none;background:transparent;cursor:pointer;padding:0;border-radius:50%}
+.ring{--lit:#8bd24a;position:absolute;inset:0;border-radius:50%;transition:.3s;
+  filter:drop-shadow(0 0 5px rgba(124,210,74,.85));
+  background:conic-gradient(from 45deg,var(--lit) 0 78deg,#20241f 78deg 90deg,var(--lit) 90deg 168deg,#20241f 168deg 180deg,var(--lit) 180deg 258deg,#20241f 258deg 270deg,var(--lit) 270deg 348deg,#20241f 348deg 360deg)}
+.guide{position:absolute;inset:9px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:#5a8f2f;font-weight:900;font-size:15px;text-shadow:0 1px 0 rgba(255,255,255,.7);
+  background:radial-gradient(circle at 38% 32%,#fff,#cfd3d0 60%,#9aa09b);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.9),0 1px 3px rgba(0,0,0,.4)}
+.power:hover .ring{filter:drop-shadow(0 0 9px rgba(124,210,74,1))}
+.scene.off .ring{--lit:#3f4a34;filter:none}
+.scene.off .guide{color:#6a726a}
+
+/* ===== shelf decor: books ===== */
+.books{display:flex;align-items:flex-end;gap:3px;height:64px}
+.book{width:12px;border-radius:2px 2px 1px 1px;position:relative;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 5px 9px rgba(0,0,0,.5)}
+.book::before{content:"";position:absolute;top:7px;left:2px;right:2px;height:3px;border-radius:2px;background:rgba(255,255,255,.55)}
+.book::after{content:"";position:absolute;top:13px;left:2px;right:2px;height:2px;border-radius:2px;background:rgba(255,255,255,.3)}
+.book.k1{height:58px;background:linear-gradient(180deg,#d0553f,#9c3627)}
+.book.k2{height:50px;background:linear-gradient(180deg,#3f95e0,#1f5fa0)}
+.book.k3{height:62px;background:linear-gradient(180deg,#f0bd34,#c48f12)}
+.book.k4{height:48px;background:linear-gradient(180deg,#3fbd86,#2b7d55)}
+.book.lean{transform:rotate(10deg);transform-origin:bottom left;margin-left:1px}
+
+/* ===== shelf decor: pets ===== */
+.figures{display:flex;align-items:flex-end;gap:14px;height:64px}
+.figure{position:relative;cursor:pointer}
+.say{position:absolute;bottom:100%;left:50%;transform:translate(-50%,6px) scale(.72);margin-bottom:9px;
+  background:#fff;color:#1b1b1b;font:700 11px/1 "Segoe UI",system-ui,sans-serif;letter-spacing:.3px;
+  padding:5px 9px;border-radius:9px;white-space:nowrap;pointer-events:none;
+  box-shadow:0 5px 12px rgba(0,0,0,.4);opacity:0;transition:transform .16s,opacity .16s;z-index:30}
+.say::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:#fff}
+.figure.say-show .say{opacity:1;transform:translate(-50%,0) scale(1)}
+
+/* cat (ginger) */
+.figure.cat{width:34px;height:52px}
+.cat .body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:30px;height:34px;border-radius:16px 16px 12px 12px;
+  background:linear-gradient(180deg,#f0a24e,#d97e2a);box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 4px 8px rgba(0,0,0,.5)}
+.cat .head{position:absolute;top:0;left:50%;transform:translateX(-50%);width:26px;height:24px;border-radius:50%;z-index:2;
+  background:linear-gradient(180deg,#f6ad5b,#e08a34);box-shadow:inset 0 2px 3px rgba(255,255,255,.45)}
+.cat .ear{position:absolute;top:-3px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid #e79038;z-index:1}
+.cat .ear.l{left:3px;transform:rotate(-20deg)}
+.cat .ear.r{right:3px;transform:rotate(20deg)}
+.cat .eye{position:absolute;top:9px;width:4px;height:5px;border-radius:50%;background:#26341c;z-index:3}
+.cat .eye.l{left:8px}.cat .eye.r{right:8px}
+.cat .nose{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:4px;height:3px;border-radius:50%;background:#7a3b2a;z-index:3}
+.cat .tail{position:absolute;bottom:1px;right:-5px;width:15px;height:10px;border:3px solid #d97e2a;border-top:none;border-left:none;border-radius:0 0 12px 0;z-index:1}
+
+/* dog (brown) */
+.figure.dog{width:40px;height:50px}
+.dog .body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:32px;height:28px;border-radius:15px 15px 13px 13px;
+  background:linear-gradient(180deg,#cfa974,#9c7038);box-shadow:inset 0 2px 3px rgba(255,255,255,.35),0 4px 8px rgba(0,0,0,.5)}
+.dog .head{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:26px;height:23px;border-radius:13px 13px 12px 12px;z-index:2;
+  background:linear-gradient(180deg,#dab883,#b58a4f);box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 3px 6px rgba(0,0,0,.4)}
+.dog .ear{position:absolute;top:4px;width:11px;height:21px;border-radius:7px 7px 9px 9px;z-index:3;
+  background:linear-gradient(180deg,#8a5f30,#5e3d1d);box-shadow:0 2px 3px rgba(0,0,0,.35)}
+.dog .ear.l{left:1px;transform:rotate(13deg)}
+.dog .ear.r{right:1px;transform:rotate(-13deg)}
+.dog .snout{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:15px;height:12px;border-radius:8px 8px 9px 9px;z-index:4;
+  background:linear-gradient(180deg,#efe0bb,#d6bd8f)}
+.dog .nose{position:absolute;top:15px;left:50%;transform:translateX(-50%);width:7px;height:5px;border-radius:50%;background:#2c1c12;z-index:5}
+.dog .eye{position:absolute;top:11px;width:5px;height:5px;border-radius:50%;background:#2c1c12;z-index:4}
+.dog .eye.l{left:7px}.dog .eye.r{right:7px}
+.dog .tail{position:absolute;bottom:4px;left:-4px;width:11px;height:10px;border:3px solid #9c7038;border-bottom:none;border-right:none;border-radius:12px 0 0 0;z-index:1}
+
+/* ===== floor plants beside the TV ===== */
+.plant{position:absolute;bottom:34%;width:82px;height:232px;z-index:3;pointer-events:none;transform-origin:bottom center}
+.plant.l{left:6.5%;transform:scale(1.32)}
+.plant.r{right:6.5%;transform:scaleX(-1) scale(1.32)}
+.pot{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:62px;height:60px;
+  background:linear-gradient(180deg,#bd7749,#8a4f30 58%,#6d3c24);
+  clip-path:polygon(15% 0,85% 0,74% 100%,26% 100%);
+  box-shadow:inset 0 3px 5px rgba(255,255,255,.28),0 10px 16px rgba(0,0,0,.55)}
+.pot::before{content:"";position:absolute;top:-8px;left:-4px;right:-4px;height:15px;border-radius:4px;
+  background:linear-gradient(180deg,#cf8659,#9a5a38);
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.35),0 3px 6px rgba(0,0,0,.4)}
+.foliage{position:absolute;bottom:50px;left:50%;width:0;height:0}
+.leaf{position:absolute;bottom:0;left:0;width:22px;height:120px;transform-origin:50% 100%;
+  border-radius:50% 50% 48% 48%/74% 74% 26% 26%;
+  background:linear-gradient(180deg,#68b84a,#2f7d34);
+  box-shadow:inset 0 8px 12px rgba(255,255,255,.18),inset 0 -10px 14px rgba(0,0,0,.28)}
+.leaf::after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1.5px;transform:translateX(-50%);
+  background:rgba(0,0,0,.18);border-radius:2px}
+.leaf:nth-child(1){transform:translateX(-50%) rotate(-40deg);height:118px}
+.leaf:nth-child(2){transform:translateX(-50%) rotate(-19deg);height:140px}
+.leaf:nth-child(3){transform:translateX(-50%) rotate(0deg);height:158px}
+.leaf:nth-child(4){transform:translateX(-50%) rotate(19deg);height:138px}
+.leaf:nth-child(5){transform:translateX(-50%) rotate(40deg);height:116px}
 
 /* ---- metallic TV bezel ---- */
-.tv{position:relative;width:min(1180px,100%);height:min(86vh,760px);border-radius:26px;
+.tv{position:relative;width:100%;height:min(74vh,680px);border-radius:18px;
   padding:14px;background:linear-gradient(160deg,#f4f6f8,#c3cace 22%,#8f979c 50%,#c7ced2 78%,#eef1f3);
-  box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 2px 3px rgba(255,255,255,.9),inset 0 -3px 6px rgba(0,0,0,.35)}
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -3px 6px rgba(0,0,0,.35)}
 .tv::before{content:"";position:absolute;inset:8px;border-radius:20px;
   background:linear-gradient(#3a4045,#20262a);z-index:0}
 
@@ -63,11 +219,11 @@ body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;p
 .tab:hover span{color:#fff}
 
 /* ---- content ---- */
-.content{display:none;flex:1;min-width:0;flex-direction:column;padding:22px 30px 16px 26px}
+.content{display:none;flex:1;min-width:0;flex-direction:column;padding:16px 30px 12px 26px}
 .blade.active .content{display:flex}
 
 .top{display:flex;justify-content:space-between;align-items:flex-start}
-.h1{font-size:38px;font-weight:300;color:var(--txt);text-shadow:0 1px 0 rgba(255,255,255,.35);line-height:1}
+.h1{font-size:34px;font-weight:300;color:var(--txt);text-shadow:0 1px 0 rgba(255,255,255,.35);line-height:1}
 .brand{text-align:right;display:flex;align-items:center;gap:12px}
 .brand .wm{font-size:13px;font-weight:600;color:var(--txt);opacity:.85;line-height:1.3}
 .brand .wm b{display:block;font-size:16px;font-weight:700}
@@ -78,7 +234,7 @@ body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;p
   text-shadow:0 1px 2px rgba(0,0,0,.4);letter-spacing:-.03em}
 
 /* profile strip */
-.pcard{margin-top:16px;display:flex;align-items:center;gap:16px;max-width:560px;
+.pcard{margin-top:10px;display:flex;align-items:center;gap:16px;max-width:560px;
   background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.28));
   border:1px solid rgba(255,255,255,.7);border-radius:12px;padding:12px 14px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 4px 10px rgba(0,0,0,.12)}
@@ -92,14 +248,14 @@ body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;p
   display:inline-flex;align-items:center;gap:6px}
 .pcard .pt .score b{font-size:13px}
 
-.sub{margin-top:14px;font-size:14.5px;color:rgba(0,0,0,.6);max-width:640px;line-height:1.5}
+.sub{margin-top:10px;font-size:14px;color:rgba(0,0,0,.6);max-width:640px;line-height:1.5}
 
 /* menu list */
-.list{margin-top:14px;flex:1;overflow-y:auto;padding-right:6px;display:flex;flex-direction:column;gap:2px}
+.list{margin-top:8px;flex:1;overflow-y:auto;padding-right:6px;display:flex;flex-direction:column;gap:2px}
 .list::-webkit-scrollbar{width:8px}
 .list::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:8px}
 .row{display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;
-  border:none;background:transparent;padding:11px 14px;border-radius:999px;position:relative;
+  border:none;background:transparent;padding:9px 14px;border-radius:999px;position:relative;
   transition:.18s;color:var(--txt)}
 .row .ic{width:34px;height:34px;flex:0 0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;
   border:2px solid var(--txt);color:var(--txt);opacity:.9}
@@ -120,7 +276,7 @@ body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;p
 .row .dt ~ .go{margin-left:10px}
 
 /* footer: glossy action pill + controller hints */
-.foot{margin-top:12px}
+.foot{margin-top:8px}
 .pill{display:flex;align-items:center;gap:14px;text-decoration:none;
   background:linear-gradient(180deg,#ffffff,#dfe5e8 52%,#c9d1d5);border:1px solid rgba(255,255,255,.8);
   border-radius:999px;padding:8px 10px;box-shadow:0 4px 12px rgba(0,0,0,.22),inset 0 1px 0 #fff}
@@ -138,18 +294,26 @@ body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;p
 .hints .lr{font-size:15px;letter-spacing:2px;color:#fff}
 
 @media(max-width:820px){
-  .tv{height:92vh}
+  .tv{height:min(60vh,520px)}
   .h1{font-size:30px}
   .content{padding:18px 16px 12px 14px}
   .tab{flex-basis:44px;width:44px}
   .blade{flex-basis:44px}
   .brand .wm{display:none}
   .row .tx i{white-space:normal}
+  .rack{width:94%}
+  .xbox{width:240px}
+  .plant{display:none}
+  .figure.dog{display:none}
+  .shelf{gap:12px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
+<div class="room">
+<div class="scene" id="scene">
+<div class="tvset">
 <div class="tv">
   <div class="screen" id="screen" data-blade="0">
     <div class="bg"><div class="glow"></div></div>
@@ -271,6 +435,53 @@ body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;p
 
     </div>
   </div>
+  <div class="crt"><span class="line"></span></div>
+</div>
+<div class="tvchin"><span class="tvbrand">SHRINIKETH</span><span class="led"></span></div>
+</div>
+<div class="stand">
+  <div class="rack">
+    <div class="shelf">
+      <div class="xbox" title="Xbox 360">
+        <div class="xcap l"></div>
+        <div class="xcap r"></div>
+        <div class="xslot"></div>
+        <button class="power" id="power" aria-label="Power" aria-pressed="true"><span class="ring"></span><span class="guide">X</span></button>
+      </div>
+      <div class="books" aria-hidden="true">
+        <span class="book k1"></span>
+        <span class="book k3"></span>
+        <span class="book k2"></span>
+        <span class="book k4"></span>
+      </div>
+      <div class="figures" aria-hidden="true">
+        <div class="figure cat">
+          <span class="say">meow</span>
+          <span class="ear l"></span><span class="ear r"></span>
+          <span class="body"></span>
+          <span class="head"></span>
+          <span class="eye l"></span><span class="eye r"></span>
+          <span class="nose"></span>
+          <span class="tail"></span>
+        </div>
+        <div class="figure dog">
+          <span class="say">wolf</span>
+          <span class="ear l"></span><span class="ear r"></span>
+          <span class="body"></span>
+          <span class="head"></span>
+          <span class="snout"></span>
+          <span class="eye l"></span><span class="eye r"></span>
+          <span class="nose"></span>
+          <span class="tail"></span>
+        </div>
+      </div>
+    </div>
+    <div class="legs"><span></span><span></span></div>
+  </div>
+</div>
+</div>
+<div class="plant l" aria-hidden="true"><div class="foliage"><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span></div><div class="pot"></div></div>
+<div class="plant r" aria-hidden="true"><div class="foliage"><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span></div><div class="pot"></div></div>
 </div>
 
 <script>
@@ -314,6 +525,21 @@ body{background:#0a0c0e;display:flex;align-items:center;justify-content:center;p
   window.addEventListener('keydown',function(e){
     if(e.key==='ArrowRight'){select(cur+1);e.preventDefault();}
     else if(e.key==='ArrowLeft'){select(cur-1);e.preventDefault();}
+  });
+  var scene=document.getElementById('scene');
+  var power=document.getElementById('power');
+  if(power){power.addEventListener('click',function(){
+    var off=scene.classList.toggle('off');
+    power.setAttribute('aria-pressed',String(!off));
+  });}
+  document.querySelectorAll('.figure').forEach(function(p){
+    var say=p.querySelector('.say'); if(!say) return;
+    p.addEventListener('click',function(e){
+      e.stopPropagation();
+      p.classList.add('say-show');
+      clearTimeout(p._t);
+      p._t=setTimeout(function(){p.classList.remove('say-show');},1300);
+    });
   });
 })();
 </script>
